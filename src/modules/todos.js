@@ -1,33 +1,61 @@
+import { format, parseISO } from 'date-fns';
+
 class Todo {
-    constructor(taskName, priority, addToProject, description, notes, dueDate, completed = false){
+    constructor(taskName, priority, description, notes, dueDate, completed = false){
         this.taskName = String(taskName);
         this.priority = String(priority).toLowerCase();
-        this.addToProject = String(addToProject);
         this.description = String(description || '');
-        // this.notes = String(notes || '');
-        this.dueDate = new Date(dueDate);
+        this.notes = String(notes || '');
+        
+        try {
+            this.dueDate = parseISO(dueDate); 
+            if (isNaN(this.dueDate)) throw new Error("Invalid date format.");
+        } catch (error) {
+            console.error(error.message);
+            this.dueDate = null;
+        }
+
         this.completed = Boolean(completed);
+        this.addToProject = null;
     }
     
     toggleCompleted(){
         this.completed = this.completed? false : true;
     }
 
-    assignToProject(projectName){
-        if (typeof projectName !== 'string' || projectName.trim() === ''){
-            throw new Error("Project name must be a valid non-empty string.");
+    assignToProject(projectInstance){
+        if (projectInstance === null) {
+            this.addToProject = null; // Allow resetting the project
+            return;
+        }      
+
+        if (typeof projectInstance !== "object" || !projectInstance.name) {
+            throw new Error("Invalid project instance.");
         }
-        this.addToProject = projectName;
+        this.addToProject = projectInstance; 
     }
 
     editTodo(updates){
         for (const key in updates){
             if(this.hasOwnProperty(key)){
-                this[key] = updates[key];
+                if (key === 'dueDate') {
+                    const parsedDate = parseISO(updates[key]);
+                    if (isNaN(parsedDate)){
+                        console.log("Invalid due date format.");
+                        continue;
+                    }
+                    this.dueDate = parsedDate;
+                } else {
+                    this[key] = updates[key];
+                }
             } else {
                 console.log(`Property ${key} does not exist on Todo.`);
             }
         }
+    }
+
+    getFormattedDueDate() {
+        return this.dueDate ? format(this.dueDate, "yyyy-MM-dd") : "No due date";
     }
 }
 
