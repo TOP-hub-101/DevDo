@@ -1,3 +1,5 @@
+import './style.css'
+
 //  *****Implementation-1*****
 
 // import Todo from './modules/todos.js';
