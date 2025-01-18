@@ -6,15 +6,7 @@ class Todo {
         this.priority = String(priority).toLowerCase();
         this.description = String(description || '');
         this.notes = String(notes || '');
-        
-        try {
-            this.dueDate = parseISO(dueDate); 
-            if (isNaN(this.dueDate)) throw new Error("Invalid date format.");
-        } catch (error) {
-            console.error(error.message);
-            this.dueDate = null;
-        }
-
+        this.dueDate = dueDate ? format(dueDate, 'MMMM d, yyyy') : null;
         this.completed = Boolean(completed);
         this.addToProject = null;
     }
@@ -55,7 +47,7 @@ class Todo {
     }
 
     getFormattedDueDate() {
-        return this.dueDate ? format(this.dueDate, "yyyy-MM-dd") : "No due date";
+        return this.dueDate ? format(this.dueDate, 'yyyy-MM-dd') : "No due date";
     }
 }
 
