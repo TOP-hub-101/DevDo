@@ -2,28 +2,47 @@ import { format } from 'date-fns';
 import Todo from "./todos.js";
 import Project from "./projects.js";
 
-const projectManager = {
-    defaultProject: null,
-    initializeDefaultProject() {
-        if (!this.defaultProject){
-            this.defaultProject = new Project(
+const createProjectManager = () => {
+    let defaultProject = null;
+
+    const initializeDefaultProject = () => {
+        if (!defaultProject) {
+            defaultProject = new Project(
                 "Default Project",
                 "This is the default project for unassigned tasks.",
-                format(new Date(), 'MMMM d, yyyy'), 
-                format(new Date(), 'MMMM d, yyyy') 
+                format(new Date(), 'MMMM d, yyyy'),
+                format(new Date(), 'MMMM d, yyyy')
             );
         }
-    },
-    assignTodoToProject(todo, project) {
-        if (todo.addToProject === null && this.defaultProject) {
-            todo.assignToProject(this.defaultProject);  
-        } else if (!(todo instanceof Todo) || !(project instanceof Project)) {
-            throw new Error("Invalid Todo or Project instance.");
-        } else {
-            todo.assignToProject(project);  
-            project.addTask(todo);  
+    };
+
+    const assignTodoToProject = (todo, project = null) => {
+        if (!(todo instanceof Todo)) {
+            throw new Error("Invalid Todo instance.");
         }
-    }
+
+        if (!project) {
+            if (!defaultProject) {
+                initializeDefaultProject();
+            }
+            project = defaultProject; // Assign to defaultProject
+        }
+
+        if (!(project instanceof Project)) {
+            throw new Error("Invalid Project instance.");
+        }
+
+        todo.assignToProject(project);
+        project.addTask(todo);
+    };
+
+    const getDefaultProject = () => defaultProject;
+
+    return {
+        initializeDefaultProject,
+        assignTodoToProject,
+        getDefaultProject,
+    };
 };
 
-export default projectManager;
+export default createProjectManager;

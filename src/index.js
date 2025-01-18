@@ -89,7 +89,9 @@
 import { format } from 'date-fns';
 import Todo from './modules/todos.js';
 import Project from './modules/projects.js';
-import projectManager from './modules/projectManager.js';
+import createProjectManager from './modules/projectManager.js';
+
+const projectManager = createProjectManager();
 
 // Initialize default project
 projectManager.initializeDefaultProject();
@@ -104,10 +106,11 @@ const myTodo = new Todo(
 );
 
 // Log the new Todo item to see its properties
-console.log("Created Todo:", myTodo);
+console.log('Created Todo:', JSON.stringify(myTodo));
 
-// Test - Assign Todo to the default project (if it's not already assigned)
-projectManager.assignTodoToProject(myTodo, null);  // Passing null for project to trigger default assignment
+
+projectManager.assignTodoToProject(myTodo);
+console.log('Todo after assigning to the default project:', myTodo);
 
 // Log the Todo after assignment
 console.log("Todo after assigning to project:", myTodo);

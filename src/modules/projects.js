@@ -1,12 +1,12 @@
-import { parseISO } from "date-fns";
+import { format } from "date-fns";
 import Todo from "./todos.js";
 
 class Project {
     constructor(name, details, startDate, endDate) {
         this.name = String(name);
         this.details = String(details || '');
-        this.startDate = parseISO(startDate);
-        this.endDate = parseISO(endDate);
+        this.startDate = startDate ? format(startDate, 'MMMM d, yyyy') : null;
+        this.endDate = endDate ? format(endDate, 'MMMM d, yyyy') : null;
         this.todos = [];
     }
 
