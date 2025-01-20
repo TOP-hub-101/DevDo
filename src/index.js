@@ -88,51 +88,51 @@ import './style.css'
 
 //  *****Implementation-3*****
 
-import { format } from 'date-fns';
-import Todo from './modules/todos.js';
-import Project from './modules/projects.js';
-import createProjectManager from './modules/projectManager.js';
+// import { format } from 'date-fns';
+// import Todo from './modules/todos.js';
+// import Project from './modules/projects.js';
+// import createProjectManager from './modules/projectManager.js';
 
-const projectManager = createProjectManager();
+// const projectManager = createProjectManager();
 
-// Initialize default project
-projectManager.initializeDefaultProject();
+// // Initialize default project
+// projectManager.initializeDefaultProject();
 
-// Test - Create a new Todo item
-const myTodo = new Todo(
-    "Finish Homework", 
-    "high", 
-    "Complete the math and science homework", 
-    "Important notes here", 
-    format(new Date(), 'MMMM d, yyyy')  // Set due date to current date
-);
+// // Test - Create a new Todo item
+// const myTodo = new Todo(
+//     "Finish Homework", 
+//     "high", 
+//     "Complete the math and science homework", 
+//     "Important notes here", 
+//     format(new Date(), 'MMMM d, yyyy')  // Set due date to current date
+// );
 
-// Log the new Todo item to see its properties
-console.log('Created Todo:', JSON.stringify(myTodo));
+// // Log the new Todo item to see its properties
+// console.log('Created Todo:', JSON.stringify(myTodo));
 
 
-projectManager.assignTodoToProject(myTodo);
-console.log('Todo after assigning to the default project:', myTodo);
+// projectManager.assignTodoToProject(myTodo);
+// console.log('Todo after assigning to the default project:', myTodo);
 
-// Log the Todo after assignment
-console.log("Todo after assigning to project:", myTodo);
+// // Log the Todo after assignment
+// console.log("Todo after assigning to project:", myTodo);
 
-// Test - Create a new Project
-const newProject = new Project(
-    "Personal Project", 
-    "Work on personal coding side project", 
-    format(new Date(), 'MMMM d, yyyy'),
-    format(new Date().setMonth(new Date().getMonth() + 1), 'MMMM d, yyyy')  // Set end date to one month from now
-);
+// // Test - Create a new Project
+// const newProject = new Project(
+//     "Personal Project", 
+//     "Work on personal coding side project", 
+//     format(new Date(), 'MMMM d, yyyy'),
+//     format(new Date().setMonth(new Date().getMonth() + 1), 'MMMM d, yyyy')  // Set end date to one month from now
+// );
 
-// Log the new project
-console.log("Created Project:", newProject);
+// // Log the new project
+// console.log("Created Project:", newProject);
 
-// Test - Assign the same Todo to the new project
-projectManager.assignTodoToProject(myTodo, newProject);
+// // Test - Assign the same Todo to the new project
+// projectManager.assignTodoToProject(myTodo, newProject);
 
-// Log the Todo after assigning to the new project
-console.log("Todo after reassigning to new project:", myTodo);
+// // Log the Todo after assigning to the new project
+// console.log("Todo after reassigning to new project:", myTodo);
 
-// Log the tasks in the new project to check if the Todo was added
-console.log("Tasks in the new project:", newProject.getTasks());
+// // Log the tasks in the new project to check if the Todo was added
+// console.log("Tasks in the new project:", newProject.getTasks());
