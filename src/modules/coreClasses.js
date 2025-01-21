@@ -1,4 +1,5 @@
 let projectsList = []
+import { updateLocalVariables } from "./localStorage";
 
 class Project {
     constructor(name, details, id) {
@@ -21,6 +22,7 @@ class Project {
 function addProject(obj, id){
     const currProject = new Project(obj.name, obj.details, id);
     projectsList.push(currProject);
+    updateLocalVariables('projectsList', projectsList);
 }
 
 function getProjectIndex(id){
@@ -35,12 +37,14 @@ function getProjectIndex(id){
 function removeProject(id){
     const index = getProjectIndex(id);
     projectsList.splice(index, 1);
+    updateLocalVariables('projectsList', projectsList);
 }
 
 function modifyProject(obj, id){
     const index = getProjectIndex(id);
     const project = projectsList[index];
     project.updateProject(obj);
+    updateLocalVariables('projectsList', projectsList);
 }
 
 
@@ -102,12 +106,14 @@ function addTodo(obj, projectId, id){
     const index = getProjectIndex(projectId);
     const newTodo = new Todo(obj.taskName, obj.desc, obj.dueDate, obj.priority, obj.dueDate, id);
     projectsList[index].todos.push(newTodo);
+    updateLocalVariables('projectsList', projectsList);
 }
 
 function removeTodo(projectId, todoId){
     const projectIndex = getProjectIndex(projectId);
     const todoIndex = getTodoIndex(todoId);
     projectsList[projectIndex].todos[todoIndex].splice(todoIndex, 1);
+    updateLocalVariables('projectsList', projectsList);
 }
 
 function getTodoIndex(todoId, index){
@@ -124,12 +130,14 @@ function modifyTodo(obj, projectId, todoId){
     const projectIndex = getProjectIndex(projectId);
     const todoIndex = getTodoIndex(todoId);
     projectsList[projectIndex].todos[todoIndex].updateVariables(obj);
+    updateLocalVariables('projectsList', projectsList);
 }
 
 function toggleAndGetStatus(projectId, todoId){
     const projectIndex = getProjectIndex(projectId);
     const todoIndex = getTodoIndex(todoId);
     projectsList[projectIndex].todos[todoIndex].toggleStatus();
+    updateLocalVariables('projectsList', projectsList);
     return projectsList[projectIndex].todos[todoIndex].completed;
 }
 

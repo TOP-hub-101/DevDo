@@ -1,98 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevDo | A To-Do List</title>
+    <title>DevDo</title>
 </head>
-
 <body>
-    <div class="main">
-        <nav>
-            <div class="logo">
-                <div class="logo__svg-container">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                        fill="#FFFFFF">
-                        <path
-                            d="M360-160h440q33 0 56.5-23.5T880-240v-80H360v160ZM80-640h200v-160H160q-33 0-56.5 23.5T80-720v80Zm0 240h200v-160H80v160Zm80 240h120v-160H80v80q0 33 23.5 56.5T160-160Zm200-240h520v-160H360v160Zm0-240h520v-80q0-33-23.5-56.5T800-800H360v160Z" />
-                    </svg>
-                </div>
-                <div class="logo__text">
-                    DevDo
-                </div>
+    <div class="divGrid">
+        <div class="projectSection">
+            <div class="titleSection">
+                <h1>DevDo</h1>
+                <button id="addProjectBtn">ADD PROJECT</button>    
             </div>
-
-            <div class="nav-links">
-                <div class="filter-links">
-                    <div id="all-tasks" class="">
-                        <div class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                                fill="#FFFFFF">
-                                <path
-                                    d="M240-160q-33 0-56.5-23.5T160-240q0-33 23.5-56.5T240-320q33 0 56.5 23.5T320-240q0 33-23.5 56.5T240-160Zm240 0q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm240 0q-33 0-56.5-23.5T640-240q0-33 23.5-56.5T720-320q33 0 56.5 23.5T800-240q0 33-23.5 56.5T720-160ZM240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400ZM240-640q-33 0-56.5-23.5T160-720q0-33 23.5-56.5T240-800q33 0 56.5 23.5T320-720q0 33-23.5 56.5T240-640Zm240 0q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Zm240 0q-33 0-56.5-23.5T640-720q0-33 23.5-56.5T720-800q33 0 56.5 23.5T800-720q0 33-23.5 56.5T720-640Z" />
-                            </svg>
-                        </div>
-                        <div>All Tasks</div>
-                    </div>
-                    <div id="todays-tasks" class="">
-                        <div class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                                fill="#FFFFFF">
-                                <path
-                                    d="M580-240q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z" />
-                            </svg>
-                        </div>
-                        <div>Today's Tasks</div>
-                    </div>
-                    <div id="upcoming-tasks" class="">
-                        <div class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                                fill="#FFFFFF">
-                                <path
-                                    d="M600-80v-80h160v-400H200v160h-80v-320q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H600ZM320 0l-56-56 103-104H40v-80h327L264-344l56-56 200 200L320 0ZM200-640h560v-80H200v80Zm0 0v-80 80Z" />
-                            </svg>
-                        </div>
-                        <div>Upcoming Tasks</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="nav-links project-links-section">
-                <div class="project-links-section-title">
-                    <div class="">Projects</div>
-                    <div id="add-project" class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                            fill="#FFFFFF">
-                            <path
-                                d="M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Z" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="project-links">
-
-                </div>
-            </div>
-        </nav>
-        <div class="content">
-            <div class="projects">
-                <div class="project">
-                    <div class="project-name-container">
-
-                    </div>
-                    <div class="tasks">
-                        <div class="task">
-
-
-                        </div>
-                    </div>
-                    <div class="add-task">
-                        <div class="add-task__text">+ Add Task</div>
-                    </div>
-                </div>
-            </div>
+            <div id="projectContainer"></div>
+        </div>
+        <div class="projectName">
+            <h1 id="currentProjectName"></h1>
+            <button id="addTodoBtn">ADD TASK</button>
+        </div>
+        <div class="todoSection">
+            <div id="todoContainer"></div>
         </div>
     </div>
+   <dialog id="projectDialog">
+        <form action="https://httpbin.org/post" method="post" id="projectForm">
+            <div>
+                <label for="projectTitle">Title: </label>
+                <input type="text" id="projectTitle" name="title" required> 
+            </div>
+            <div>
+                <label for="projectDesc">Description: </label>
+                <input type="text" id="projectDesc" name="desc" required>
+            </div>
+            <div class="button-row">
+                <button type="submit" id="submitProject">SUBMIT PROJECT</button>
+                <button id="closeProject" type="button">CLOSE</button>
+            </div>
+        </form>
+   </dialog>
+   
+    <dialog id="todoDialog">
+        <form action="https://httpbin.org/post" method="post" id="todoForm">
+            <div>
+                <label for="todoTitle">Title: </label>
+                <input type="text" id="taskTitle" name="title" required>
+            </div>
+            <div>
+                <label for="todoDesc">Description: </label>
+                <input type="text" id="taskDesc" name="desc" required>
+            </div>
+            <div>
+                <label for="dueDate">Due Date: </label>
+                <input type="date" id="dueDate" name="dueDate" required>
+            </div>
+            <div>
+                <label for="todoPriority">Priority: </label>
+                <select id="todoPriority" name="priority" required>
+                    <option>High</option>
+                    <option>Medium</option>
+                    <option>Low</option>
+                </select>
+            </div>
+            <div class="button-row">
+                <button type="submit" id="submitTodo">SUBMIT TASK</button>
+                <button id="closeTodo" type="button">CLOSE</button>
+            </div>
+        </form>
+    </dialog>
 </body>
-
 </html>
