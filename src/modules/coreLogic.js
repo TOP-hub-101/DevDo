@@ -105,28 +105,28 @@ export default function ManageProject() {
     };
 
     if (localStorage.getItem('projects') === null) {
-        newProject('TEST PROJECT');
-        newTodoList(0, [
-            'TEST TITLE',
-            'Lorem ipsum dolor sit amet',
-            '2025-02-01',
-            'low',
-            false,
-        ]);
-        newTodoList(0, [
-            'CHECKED TASKS',
-            'Consectetur adipiscing elit',
-            '2025-02-12',
-            'medium',
-            'true',
-        ]);
-        newTodoList(0, [
-            'TASKS',
-            'Phasellus feugiat nisi eu turpis',
-            '2025-01-12',
-            'high',
-            false,
-        ]);
+        newProject('TEST PROJECT', 'Test Project details');
+        newTodo(0, {
+            taskName: 'TEST TITLE',
+            desc: 'Lorem ipsum dolor sit amet',
+            dueDate: '2025-02-01',
+            priority: 'low',
+            completed: false,
+        });
+        newTodo(0, {
+            taskName: 'CHECKED TASKS',
+            desc: 'Consectetur adipiscing elit',
+            dueDate: '2025-02-12',
+            priority: 'medium',
+            completed: true,
+        });
+        newTodo(0, {
+            taskName: 'TASKS',
+            desc: 'Phasellus feugiat nisi eu turpis',
+            dueDate: '2025-01-12',
+            priority: 'high',
+            completed: false,
+        });
         updateStorage();
     } else {
         getLocalStorage();
