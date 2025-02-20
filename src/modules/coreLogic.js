@@ -17,7 +17,7 @@ class Todo {
     }
 
     updateValue(obj) {
-        const { taskName, desc, dueDate, priority, completed } = obj;
+        const [taskName, desc, dueDate, priority, completed] = obj;
         if (taskName) this.taskName = taskName;
         if (desc) this.desc = desc;
         if (dueDate) {
@@ -49,7 +49,7 @@ export default function ManageProject() {
     };
 
     const newTodo = (projectIndex, obj) => {
-        const { taskName, desc, dueDate, priority, completed = false } = obj;
+        const [ taskName, desc, dueDate, priority, completed = false ] = obj;
         projects[projectIndex].todos.push(
             new Todo(taskName, desc, dueDate, priority, completed)
         );
