@@ -6,9 +6,9 @@ import deleteTodoIcon from '../images/trash-can-black.png'
 const todayDate = lightFormat(new Date(), 'yyyy-MM-dd')
 
 export default function Display() {
-    const updateContentDisplay = (parentNode, obj) => {
+    const updateContentDisplay = (parentNode, array) => {
         clearDisplay(parentNode);
-        if (obj === undefined) return;
+        if (array === undefined) return;
         const addTodoBtn = document.createElement('button');
         addTodoBtn.classList.add();
         addTodoBtn.textContent = 'New Tasks +';
