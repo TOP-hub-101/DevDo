@@ -77,7 +77,7 @@ button {
 
 button:hover,
 button:focus {
-    background: rgb(184, 30, 255);
+    background: oklch(0.291 0.149 302.717);
     transition: 0.3s;
 }
 

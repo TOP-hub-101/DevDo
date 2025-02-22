@@ -1,2 +1,230 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap'); /*Roboto Font*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/*Roboto Font*/
 
+body {
+    font: 1.1rem "Roboto", sans-serif;
+    display: grid;
+    grid-template-columns: 310px auto;
+    grid-template-rows: 90px auto;
+}
+
+header {
+    background-color: oklch(0.623 0.214 259.815);
+    box-shadow: 0px 3px 12px 0px rgba(63, 63, 63, 0.75);
+    z-index: 1;
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+header h1 {
+    color: oklch(0.953 0.051 180.801);
+    text-align: center;
+    margin-top: 10px;
+}
+
+dialog[open] {
+    position: fixed;
+    margin: auto;
+    border: 2px solid oklch(0.359 0.144 278.697);
+    outline: 2px solid oklch(0.673 0.182 276.935);
+    background-color: oklch(0.785 0.115 274.713);
+    border-radius: 10px;
+}
+
+form {
+    color: white;
+    padding: 15px 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    width: 100%;
+    padding: 3px;
+    margin-top: 8px;
+    font-weight: 500;
+}
+
+select#read {
+    margin: 15px 7px;
+    border-radius: 5px;
+}
+
+input[type="text"] {
+    outline: none;
+    border-radius: 8px;
+    padding: 3px 15px;
+    font-weight: 500;
+    border: 2px solid rgb(38, 139, 255);
+    width: 300px;
+}
+
+input[type="text"]:hover,
+select:hover {
+    box-shadow: 0px 0px 0px 2px rgba(63, 63, 63, 0.75);
+}
+
+.sidebar {
+    padding: 10px 40px;
+    margin-bottom: 30px;
+    background-color: oklch(0.707 0.165 254.624);
+    color: rgb(245, 245, 245);
+    min-height: 100vh;
+}
+
+.sidebar>button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 6px 15px;
+}
+
+button {
+    padding: 3px 8px;
+    margin: 5px;
+    border-radius: 10px;
+    width: auto;
+}
+
+.project-list-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.project-list-wrapper div {
+    width: 100%;
+    border-radius: 12px;
+    padding: 6px 12px 6px 20px;
+    transition: 0.5s;
+}
+
+.delete-project,
+.project-list-wrapper div:hover {
+    cursor: pointer;
+}
+
+.project-list-wrapper div:hover {
+    background: oklch(0.953 0.051 180.801);
+    transition: 0.5s;
+    color: oklch(0.282 0.091 267.935);
+}
+
+
+.content {
+    background-color: oklch(0.809 0.105 251.813);
+    padding: 50px;
+}
+
+.content h3 {
+    margin: 10px;
+    color: white;
+}
+
+.main-content {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    grid-template-rows: 50px repeat(auto-fit, 310px);
+    gap: 40px;
+}
+
+.main-content>p {
+    color: white;
+}
+
+.new-todo {
+    grid-area: 1 / 1 / 2 / -1;
+    width: 120px;
+}
+
+form.new-todo {
+    width: auto;
+}
+
+.todo-card {
+    position: relative;
+    border-radius: 10px;
+    background-color: rgb(240, 240, 240);
+    padding: 20px;
+}
+
+.todo-card>* {
+    margin-top: 10px;
+    padding: 5px;
+}
+
+.todo-desc:hover {
+    transition: 0.7s;
+    cursor: pointer;
+    background-color: rgb(142, 214, 255);
+    padding: 15px;
+    border-radius: 15px;
+    text-decoration: underline;
+}
+
+.todo-desc {
+    transition: 0.7s;
+}
+
+.delete-todo {
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.edit-todo-btn {
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.checked {
+    text-decoration: line-through;
+    background-color: rgb(131, 131, 131);
+    opacity: 0.6;
+}
+
+.active {
+    transition: 0.3s;
+    background: rgb(29, 26, 129);
+}
+
+
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: rgb(245, 245, 245);
+    text-align: center;
+    font-style: italic;
+    font-size: 0.9rem;
+    padding: 7px;
+}
+
+/* forcrfully clear storage */
+
+#clearButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#clearButton:hover {
+    background-color: #0056b3;
+}
+
+#status {
+    margin-top: 20px;
+    font-size: 16px;
+    color: green;
+}

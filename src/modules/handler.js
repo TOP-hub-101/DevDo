@@ -30,10 +30,9 @@ export default function handler() {
         }
         if (target.id === 'submit') {
             const newProjectName = document.getElementById('name').value;
-            const newProjectDetails = document.getElementById('details').value;
             newProjectFormModal.close();
-            // if (newProjectName === '') return
-            project.newProject(newProjectName, newProjectDetails);
+            if (newProjectName === '') return
+            project.newProject(newProjectName);
             display.clearDisplay(mainContent);
             display.updateProjectDisplay(projectList, project.getProjectList());
             newProjectForm.reset();
@@ -72,7 +71,7 @@ export default function handler() {
         const target = event.target;
 
         if (target.id === 'submit'){
-            const formInput = [...newTodoForm.getElementsByTagName('name')].map(
+            const formInput = [...newTodoForm.getElementsByTagName('input')].map(
                 (input) => input.value
             );
             formInput.push(document.getElementById('priority').value);
@@ -105,12 +104,12 @@ export default function handler() {
         }
 
         if (target.classList.contains('edit')){
-            const currentTodos = project.getProjectTodos(currentProjectIndex)[todoCardIndex];
+            const currentTodo = project.getProjectTodos(currentProjectIndex)[todoCardIndex];
 
-            document.getElementById('edit-title').value = currentTodos.title;
-            document.getElementById('edit-description').value = currentTodos.description;
-            document.getElementById('edit-due-date').value = currentTodos.dueDate;
-            document.getElementById('edit-priority').value = currentTodos.priority;
+            document.getElementById('edit-title').value = currentTodo.taskName;
+            document.getElementById('edit-description').value = currentTodo.desc;
+            document.getElementById('edit-due-date').value = currentTodo.dueDate;
+            document.getElementById('edit-priority').value = currentTodo.priority;
             editTodoForm.setAttribute('data-todo-index', todoCardIndex);
 
             editTodoFormModal.showModal();
@@ -150,7 +149,7 @@ export default function handler() {
                 project.getProjectTodos(currentProjectIndex)
             );
             project.updateStorage();
-            editFormInput.close();
+            editTodoFormModal.close();
         }
 
         if (target.id === 'edit-cancel'){
@@ -165,5 +164,5 @@ export default function handler() {
         }
     }
 
-    display.initialize(projectList, mainContent, project.getProjectList(), []);
+    display.initialize(projectList, project.getProjectList());
 }

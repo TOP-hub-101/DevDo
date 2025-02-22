@@ -2,7 +2,7 @@ import { formatDistance } from "date-fns"
 import { lightFormat } from "date-fns"
 import deleteIcon from '../images/trash-can.png'
 import deleteTodoIcon from '../images/trash-can-black.png'
-
+import editButtonIcon from '../images/pencil.png'
 const todayDate = lightFormat(new Date(), 'yyyy-MM-dd')
 
 export default function Display() {
@@ -10,7 +10,7 @@ export default function Display() {
         clearDisplay(parentNode);
         if (array === undefined) return;
         const addTodoBtn = document.createElement('button');
-        addTodoBtn.classList.add();
+        addTodoBtn.classList.add('new-todo');
         addTodoBtn.textContent = 'New Tasks +';
         parentNode.appendChild(addTodoBtn);
         generateContentDisplay(parentNode, array);
@@ -23,11 +23,12 @@ export default function Display() {
             const projectListWrapper = document.createElement('div');
             const projectName = document.createElement('div');
             const deleteProject = document.createElement('img');
-            projectListWrapper.classList.add();
+            projectListWrapper.classList.add('project-list-wrapper');
             projectListWrapper.setAttribute('data-project-index', i);
             projectName.textContent = array[i].projectName;
-            projectName.classList.add();
-            deleteProject.classList.add();
+            projectName.classList.add('project-btn');
+            deleteProject.classList.add('delete-project');
+            deleteProject.src = deleteIcon;
             deleteProject.setAttribute('width', '25px');
             projectListWrapper.appendChild(projectName);
             projectListWrapper.appendChild(deleteProject);
@@ -47,13 +48,15 @@ export default function Display() {
             const desc = document.createElement('p');
             const dueDate = document.createElement('p');
             const priority = document.createElement('div');
+            const editButton = document.createElement('img');
             const deleteTodo = document.createElement('img');
 
-            card.classList.add();
+            card.classList.add('todo-card');
             card.setAttribute('data-todo-index', i);
             taskName.textContent = array[i].taskName
             dueDate.textContent = `Due ${formatDistance(array[i].dueDate, todayDate, {addSuffix: true})}`;
             desc.textContent = array[i].desc;
+            desc.classList.add('todo-desc');
 
             priority.textContent = `${array[i].priority.toUpperCase()} Priority`;
             priority.style.backgroundColor = 
@@ -62,25 +65,32 @@ export default function Display() {
                     : array[i].priority === 'medium'
                         ? '#FFB52E'
                         : '#FF0000';
+
+            editButton.src = editButtonIcon;
+            editButton.setAttribute('width', '30px');
+            editButton.classList.add('edit-todo-btn');
             deleteTodo.src = deleteTodoIcon;
             deleteTodo.setAttribute('width', '30px');
-            deleteTodo.classList.add();
+            deleteTodo.classList.add('delete-todo');
+            
 
             if(!array[i].completed) {
-                desc.setAttribute('class', );
+                editButton.classList.add('edit');
+                // desc.setAttribute('class', 'todo-desc edit');
             } else {
-                desc.setAttribute('class', );
+                editButton.classList.remove('edit');
+                // desc.setAttribute('class', 'todo-desc');
             }
 
             if(array[i].completed) {
-                card.classList.add();
+                card.classList.add('checked');
             }
 
             card.appendChild(taskName);
             card.appendChild(desc);
             card.appendChild(dueDate);
             card.appendChild(priority);
-            card.appendChild(priority);
+            card.appendChild(editButton);
             card.appendChild(deleteTodo);
             parentNode.appendChild(card);
         }
