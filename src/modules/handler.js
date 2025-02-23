@@ -108,7 +108,10 @@ export default function handler() {
 
             document.getElementById('edit-title').value = currentTodo.taskName;
             document.getElementById('edit-description').value = currentTodo.desc;
-            document.getElementById('edit-due-date').value = currentTodo.dueDate;
+            let dateObj = new Date(currentTodo.dueDate);
+            document.getElementById('edit-due-date').value = dateObj.toISOString().split("T")[0]; 
+            //? this.dueDate.toISOString().split("T")[0] : ""; 
+            // Convert to "YYYY-MM-DD"
             document.getElementById('edit-priority').value = currentTodo.priority;
             editTodoForm.setAttribute('data-todo-index', todoCardIndex);
 

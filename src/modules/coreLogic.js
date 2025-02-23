@@ -1,4 +1,4 @@
-import {parseISO, format} from 'date-fns';
+import { parseISO, format} from 'date-fns';
 
 class Project {
     constructor(projectName) {
@@ -12,7 +12,8 @@ class Todo {
     constructor(taskName, desc, dueDate, priority, completed = false) {
         this.taskName = String(taskName);
         this.desc = String(desc || '');
-        this.dueDate = Date(dueDate); //? format(dueDate, 'yyyy-MM-dd') : null;
+        this.dueDate = dueDate ? new Date(dueDate) : null; //.toISOString().split("T")[0]; or 
+        //? format(dueDate, 'yyyy-MM-dd') : null;
         this.priority = priority;
         this.completed = completed;
     }
@@ -98,7 +99,10 @@ export default function ManageProject() {
         for (let i = 0; i < projectStorage.length; i++) {
             projects.push(new Project(projectStorage[i].projectName));
             for (let j = 0; j < projectStorage[i].todos.length; j++) {
-                const { taskName, desc, dueDate, priority, completed } = projectStorage[i].todos[j];
+                let { taskName, desc, dueDate, priority, completed } = projectStorage[i].todos[j];
+
+                dueDate = dueDate ? new Date(dueDate) : null;
+
                 projects[i].todos.push(
                     new Todo(taskName, desc, dueDate, priority, completed)
                 );
